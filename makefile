@@ -1,13 +1,12 @@
 all: up
 prepare: 
-	@echo "\n---------------checking for depedencies----------------\n"
 	@sudo apt-get update
 	@sudo apt install -y docker.io
 	@sudo apt install -y docker-compose
 	@sudo systemctl enable --now docker
-	@echo "\n-------------------------------------------------------- \n"
+	@echo "installing required packages"
 up: prepare
-	@echo "\n----------------starting container----------------\n"
+	@echo "^^initialising container^^"
 	@#! /bin/bash
 	@if [ ! -d docker ]; then\
 		mkdir docker;\
@@ -18,12 +17,11 @@ up: prepare
 	fi
 	@sudo cp ./index.php ./docker/www/;
 	@sudo docker-compose up -d
-	@echo "\n-------------------------------------------------------- \n"
 teardown: down
-	@echo "\n----------------removing files--------------------\n"
+
 	@sudo rm -rf ./docker
-	@echo "\n-------------------------------------------------------- \n"
+	@echo "^^removing files^^"
 down:
-	@echo "\n----------------stoping all services-------------------\n"
+
 	@sudo docker-compose down
-	@echo "\n-------------------------------------------------------- \n"
+	@echo "^^shutting down services^^"
