@@ -25,3 +25,4 @@ down:
 
 	@sudo docker-compose down
 	@echo "^^shutting down services^^"
+	
